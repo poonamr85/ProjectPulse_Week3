@@ -1,0 +1,21 @@
+Task ID,Title,Owner,Priority,Due Date,Planned Sprint ID,Current Sprint ID,Status,Status Since,Blocker Note,Depends On Task IDs,Project ID,Data Type
+T-020,Review go-live readiness,Maya,Critical,2026-11-13,SPR-03,SPR-03,In progress,2026-11-10,,,PRJ-001,Synthetic
+T-019,Prepare launch announcement,Nina,Low,2026-11-12,SPR-03,SPR-03,Done,2026-11-10,,,PRJ-001,Synthetic
+T-018,Test learner enrollment,Zoe,High,2026-11-10,SPR-03,SPR-03,Done,2026-11-10,,,PRJ-001,Synthetic
+T-017,Security review,Arjun,High,2026-11-11,SPR-03,SPR-03,In progress,2026-11-10,,,PRJ-001,Synthetic
+T-016,Create launch checklist,Nina,Medium,2026-11-06,SPR-03,SPR-03,Done,2026-11-04,,,PRJ-001,Synthetic
+T-015,Fix mobile layout,Maya,Medium,2026-11-06,SPR-03,SPR-03,Done,2026-11-04,,,PRJ-001,Synthetic
+T-014,Run performance tests,Zoe,High,2026-11-10,SPR-03,SPR-03,Blocked,2026-11-09,Load-test environment capacity unavailable; infrastructure allocation pending,,PRJ-001,Synthetic
+T-013,Run checkout integration tests,Zoe,Critical,2026-11-09,SPR-03,SPR-03,Blocked,2026-11-10,Checkout tests found webhook signature validation failure; needs payment integration fix,T-004,PRJ-001,Synthetic
+T-012,Prepare help articles,Nina,Low,2026-10-30,SPR-02,SPR-02,Done,2026-10-30,,,PRJ-001,Synthetic
+T-011,Review accessibility,Maya,High,2026-10-30,SPR-02,SPR-03,Done,2026-11-09,,,PRJ-001,Synthetic
+T-010,Implement password reset,Arjun,High,2026-10-30,SPR-02,SPR-02,Done,2026-10-30,,,PRJ-001,Synthetic
+T-009,Add course search,Leo,Medium,2026-10-28,SPR-02,SPR-02,Done,2026-10-30,,,PRJ-001,Synthetic
+T-008,Generate payment receipts,Nina,High,2026-10-29,SPR-02,SPR-03,Blocked,2026-10-23,Receipt webhook configuration pending from payment provider; payment integration is complete,T-004,PRJ-001,Synthetic
+T-007,Build enrollment flow,Maya,High,2026-10-28,SPR-02,SPR-02,Done,2026-10-30,,,PRJ-001,Synthetic
+T-006,Set up analytics,Leo,Medium,2026-10-30,SPR-01,SPR-03,Done,2026-11-06,,,PRJ-001,Synthetic
+T-005,Write onboarding emails,Nina,Medium,2026-10-16,SPR-01,SPR-01,Done,2026-10-16,,,PRJ-001,Synthetic
+T-004,Integrate payment gateway,Arjun,Critical,2026-10-27,SPR-01,SPR-03,Done,2026-11-09,,,PRJ-001,Synthetic
+T-003,Create course catalog,Leo,High,2026-10-16,SPR-01,SPR-02,Done,2026-10-23,,,PRJ-001,Synthetic
+T-002,Build login API,Arjun,High,2026-10-16,SPR-01,SPR-01,Done,2026-10-16,,,PRJ-001,Synthetic
+T-001,Design login page,Maya,High,2026-10-14,SPR-01,SPR-01,Done,2026-10-16,,,PRJ-001,Synthetic

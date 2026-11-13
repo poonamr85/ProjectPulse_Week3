@@ -1,0 +1,21 @@
+Task ID,Title,Owner,Priority,Due Date,Planned Sprint ID,Status,Status Since,Blocker Note,Data Type,Project ID,Depends On Task IDs,Current Sprint ID
+T-001,Design login page,Maya,High,2026-10-14,SPR-01,Done,2026-10-16,,Synthetic,PRJ-001,,SPR-01
+T-002,Build login API,Arjun,High,2026-10-16,SPR-01,Done,2026-10-16,,Synthetic,PRJ-001,,SPR-01
+T-003,Create course catalog,Leo,High,2026-10-16,SPR-01,Done,2026-10-23,,Synthetic,PRJ-001,,SPR-02
+T-004,Integrate payment gateway,Arjun,Critical,2026-10-27,SPR-01,Blocked,2026-10-09,Sandbox API credentials pending from payment provider,Synthetic,PRJ-001,,SPR-03
+T-005,Write onboarding emails,Nina,Medium,2026-10-16,SPR-01,Done,2026-10-16,,Synthetic,PRJ-001,,SPR-01
+T-006,Set up analytics,Leo,Medium,2026-10-30,SPR-01,In progress,2026-10-23,,Synthetic,PRJ-001,,SPR-03
+T-007,Build enrollment flow,Maya,High,2026-10-28,SPR-02,Done,2026-10-30,,Synthetic,PRJ-001,,SPR-02
+T-008,Generate payment receipts,Nina,High,2026-10-29,SPR-02,Blocked,2026-10-23,Depends on T-004 payment integration,Synthetic,PRJ-001,T-004,SPR-03
+T-009,Add course search,Leo,Medium,2026-10-28,SPR-02,Done,2026-10-30,,Synthetic,PRJ-001,,SPR-02
+T-010,Implement password reset,Arjun,High,2026-10-30,SPR-02,Done,2026-10-30,,Synthetic,PRJ-001,,SPR-02
+T-011,Review accessibility,Maya,High,2026-10-30,SPR-02,In progress,2026-10-23,,Synthetic,PRJ-001,,SPR-03
+T-012,Prepare help articles,Nina,Low,2026-10-30,SPR-02,Done,2026-10-30,,Synthetic,PRJ-001,,SPR-02
+T-013,Run checkout integration tests,Zoe,Critical,2026-11-09,SPR-03,Blocked,2026-11-02,Depends on T-004 payment integration,Synthetic,PRJ-001,T-004,SPR-03
+T-014,Run performance tests,Zoe,High,2026-11-10,SPR-03,In progress,2026-11-02,,Synthetic,PRJ-001,,SPR-03
+T-015,Fix mobile layout,Maya,Medium,2026-11-06,SPR-03,Done,2026-11-04,,Synthetic,PRJ-001,,SPR-03
+T-016,Create launch checklist,Nina,Medium,2026-11-06,SPR-03,Done,2026-11-04,,Synthetic,PRJ-001,,SPR-03
+T-017,Security review,Arjun,High,2026-11-11,SPR-03,In progress,2026-11-02,,Synthetic,PRJ-001,,SPR-03
+T-018,Test learner enrollment,Zoe,High,2026-11-10,SPR-03,In progress,2026-11-04,,Synthetic,PRJ-001,,SPR-03
+T-019,Prepare launch announcement,Nina,Low,2026-11-12,SPR-03,To do,2026-10-09,,Synthetic,PRJ-001,,SPR-03
+T-020,Review go-live readiness,Maya,Critical,2026-11-13,SPR-03,To do,2026-10-09,,Synthetic,PRJ-001,,SPR-03

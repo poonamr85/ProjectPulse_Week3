@@ -1,0 +1,4 @@
+Sprint ID,Sprint Name,Start Date,End Date,Goal,Status,Project ID,Data Type
+SPR-01,Sprint 1,2026-10-05,2026-10-16,Account setup and course discovery,Completed,PRJ-001,Synthetic
+SPR-02,Sprint 2,2026-10-19,2026-10-30,Enrollment and payments,Completed,PRJ-001,Synthetic
+SPR-03,Sprint 3,2026-11-02,2026-11-13,Testing and launch readiness,Active,PRJ-001,Synthetic

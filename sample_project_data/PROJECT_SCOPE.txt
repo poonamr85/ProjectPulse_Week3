@@ -1,0 +1,37 @@
+STEP 1 — PROJECT SCOPE
+
+Project: Intelligent Project Status Agent
+Demo domain: Online Learning Platform (PRJ-001)
+Architecture planned: Single ReAct agent, LangChain tools, LangGraph, Mem0, SQLite, Streamlit, LangSmith.
+
+USER ACTIONS
+1. Sync tasks, sprints, and snapshots from Notion.
+2. Generate a weekly report for a selected as-of date.
+3. Ask a status or historical question.
+4. Review, request revisions, approve, or reject a report.
+
+DEMO DATE AND PERIODS
+Fixed as-of date: November 4, 2026. Current sprint: SPR-03.
+Weekly comparison: October 28 through November 4, using latest observations at or before each boundary (October 23 and November 4). Always display those actual observation dates and flag that the comparison is approximate. Do not claim an exact completion date between observations.
+
+REPORT CONTENT
+Data freshness and coverage; current-sprint status; project-wide metrics separately labeled; newly observed completions; current blockers; overdue unfinished work; historical changes; evidence-linked risks; suggested follow-ups.
+
+RULES
+Overdue: due date strictly before reporting date and status not Done.
+Blocked: explicit Blocked status, never inferred solely from inactivity.
+Unchanged In progress: same observed status for at least 7 calendar days; possible stall, not confirmed blocker.
+Blocked across multiple sprints: Blocked observations in at least two distinct Assigned Sprint IDs. Exclude blank memberships. Describe as observed across sprints; snapshots do not prove continuous blockage.
+Critical risk: an unfinished Critical task is blocked or overdue.
+High risk: other blocked or overdue incomplete tasks.
+Medium risk: In progress unchanged for at least 7 days and not already higher risk.
+Overall risk is the highest applicable task risk. Report the rules with evidence. No automatic low-risk conclusion if data is incomplete.
+
+MEMORY BOUNDARIES
+Exact snapshots support counts and temporal comparisons. Mem0 stores dated project context and approved summaries linked to evidence. LangGraph checkpoints store workflow execution state.
+
+FIRST VERSION EXCLUSIONS
+No automatic edits to Notion tasks, emails, Slack notifications, multiple live connectors, story-point velocity, or unsupported dependency inference.
+
+ACCEPTANCE
+Fetch all 20 tasks, 3 sprints, and 120 snapshots; repeated sync does not duplicate records; correctly identify known demo cases; distinguish project-wide and sprint-specific metrics; disclose missing data; handle tool failures; pause before report publication and resume after restart.

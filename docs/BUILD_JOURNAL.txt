@@ -1,0 +1,79 @@
+BUILD JOURNAL — STEPS 3–5
+
+User request: Proceed with Python setup, Notion/structured-history ingestion, and Mem0 project memory after data preparation.
+
+Prior coding guidance from this conversation:
+- Build an agentic project-status system with tools, state, recovery, and human handoff.
+- Use a single ReAct agent coordinated with LangGraph.
+- Connect Notion and use Mem0 for relevant historical project context.
+- Preserve synthetic data disclosure and prepare documentation, GitHub code, and a demo.
+
+Implemented in this milestone:
+- Python package, CLI, local virtual environment, ignored secret/data paths, environment template.
+- Read-only Notion REST connector with data-source discovery and pagination.
+- CSV-backed offline exercise of the same schema validation and storage path.
+- Transactional SQLite records, immutable snapshot facts, sync audit, explicit current-state capture.
+- Mem0 Platform REST adapter, evidence-linked observations, scoped date-filtered search, delivery queue and asynchronous status polling.
+- Failure-focused unittest coverage.
+
+Design iterations:
+1. Kept exact historical facts separate from Mem0 semantic context.
+2. Added explicit delivery states instead of retrying ambiguous Mem0 writes.
+3. Added optional dated current-task capture so updating tasks does not require inventing historical observations.
+
+Observations:
+- Sample task history tracks status/sprint/blocker changes; it does not contain historical ownership or due-date changes.
+- Semantic retrieval is not an exhaustive temporal query engine.
+- SQLite atomic writes preserve the previous complete dataset if fetching or validation fails.
+
+Validation and remaining work:
+- Automated local tests cover imports, pagination, isolation, failed fetches, immutable history, retries, and memory delivery states.
+- No Notion or Mem0 credentials were available; live authentication, schema checks, and remote memory operations remain unverified.
+- Agent behavior, LangGraph checkpoints, human approval, report generation, and UI are later milestones.
+
+This journal records this session's implementation decisions; it does not invent prompts, live-service results, or lessons from an unperformed demo.
+
+FOLLOW-UP CONNECTION DIAGNOSIS
+The screenshot showed Ctrl+C during TLS negotiation. A credential-free Python diagnostic confirmed missing trusted certificates (SSLCertVerificationError). Ran the supplied Python 3.14 certificate installer with approval. Live sync then exposed one entirely blank Notion task page; the connector now ignores completely empty pages but still validates partial records. Live Notion sync succeeded: 20 tasks, 3 sprints, 120 snapshots. All 15 tests passed. Mem0 remote publication remains unverified and was not performed.
+
+MEM0 SEARCH FIX
+Reproduced live HTTP 400: custom metadata fields were incorrectly sent as top-level filter keys. Corrected nesting, verified plain metadata equality against live service, and moved historical date checks locally because metadata range comparisons are unsupported. Existing remote records omit observation_date; retrieval now uses the explicit dated snapshot identifier as a legacy fallback. Live payment-blocker retrieval succeeded. All 16 tests pass.
+
+STEP 6 — ANALYSIS TOOLS
+User requested simpler code with clear structure. Implemented a shared dated project reader and AnalysisService, plus thin LangChain tool wrappers bound to one trusted project/source. Eight tools include explicit sync and Mem0 context retrieval. Each wrapper opens its own SQLite connection, and anticipated errors return actionable tool observations. Added command-line invocation, known-fact and failure tests, tool guide, and a pinned tool environment. No model or UI was built. No new Notion reads or memory uploads were needed for these tests; smoke checks use already-synced records.
+
+NEBIUS MODEL CONNECTION
+After the user configured Nebius settings, added explicit ChatOpenAI-compatible Nebius configuration and a two-turn model-check command. Live GLM-5.2 selected fetch_sprint_data with automatic tool choice, used the November 4 reporting date, and summarized the correct 12-task sprint counts. The test exposes only one read-only tool; this is not the full agent. Added four offline tests; all 34 tests pass. Model prose included qualitative interpretation, so factual report validation remains necessary. No Notion writes, memory publications, or report saving were performed.
+
+REACT AGENT
+User requested creation with a step-by-step explanation. Implemented explicit model/approval/tools LangGraph nodes, bounded execution, recoverable tool-error observations, reporting cutoff checks, SQLite checkpoints, and resumable sync approval. Added ask, agent-status, and agent-resume CLI commands. Offline restart/approval tests passed. Live GLM-5.2 used persistent-blocker detection, blocker detection, and two Mem0 searches to identify T-004 and T-008: three model calls, four tool calls, zero tool errors. Narrative validation and report publication remain future stages.
+
+CHECKED WEEKLY REPORTS AND PROPOSED MITIGATIONS
+User requested the minimal checked-draft/review/save flow plus evidence-backed risk mitigation. Added Python-controlled factual sections, a typed model-generated summary/proposal schema, evidence/owner/severity/count checks, bounded corrections and revisions, durable report review, exact-version/hash approval, and atomic idempotent JSON/Markdown saving. Live GLM-5.2 generated five proposed mitigation plans and paused with no validation issues; the report remains unapproved. Exported a clearly labeled local preview for user review. Offline tests approve only temporary fixtures. No external publication, task updates, mitigation execution, or Mem0 uploads were performed.
+
+STREAMLIT REPORT UI AND DOCUMENT DOWNLOADS
+User requested a UI to generate/review/download reports in a proper format. Added a local Streamlit workspace with a scoped report library, date controls, sprint metrics/chart, risk/mitigation cards, evidence/history views, and existing versioned review controls. Added DOCX/PDF/Markdown exports with document status, headings, and pagination. Existing live draft was reopened without model calls; sample Word/PDF previews were produced locally. Streamlit AppTest verified generation, approval, revision feedback, rejection and library scope using fake models/temporary databases. Document checks reopen Word and extract PDF text. All 60 tests pass. No live report was approved or externally published by this work. Browser pixels/download dialogs were not automated.
+
+REPORT VIEW SIMPLIFICATION
+User requested bullet summaries, alternatives to progress text/task tables, clarification of review/data editing, removal of duplicated Full Report content, and an explanation of evidence/history. Added non-destructive summary bullet formatting shared by UI and downloads, project movement counters, a grouped sprint board and compact-list option. Removed Full Report tab and moved provenance/history into an optional collapsed section with deduplicated freshness details. Review copy explicitly distinguishes narrative/proposal changes from factual Notion updates. Added interaction and bullet-preservation checks. No source records, approved report payloads, or approval hashes were changed.
+
+REPORT GRAPHS
+User requested explicit bullet points and graphs for progress/task register. Made summary list markers prominent with escaped HTML, added Altair before/after status bars and observed-change bars, and replaced task board/list with an interactive status map and owner workload chart. Charts use frozen report facts and show actual observation boundaries; no durations or workload hours are invented. Added chart-data checks and UI chart switching tests.
+
+ACCEPTANCE CONNECTION FAILURE
+User reported a first-model-call needs_human result with no HTTP status and no executed tools. Verified the configured endpoint is reachable, key authenticates, and GLM-5.2 is listed. The same live agent question subsequently completed in three model calls with persistent-blocker detection and two Mem0 searches, identifying T-004/T-008. The original transport failure could not be precisely reconstructed. Centralized safe error messages now distinguish timeout/connection failures from HTTP authentication, model access, and quota errors. Added a regression test that checks sensitive debug text is not surfaced.
+
+REPEATED MODEL TIMEOUT
+User reported an explicit Nebius timeout after the earlier successful retry. Replaced the fixed 45-second timeout with a validated configurable default of 120 seconds (15–180 allowed), keeping one automatic retry. Added configuration tests and clarified that requests may take two timeout windows. Provider latency or network conditions are not inferred to be fixed by a larger client timeout.
+
+PROGRESS GRAPHS IN DOWNLOADS
+User requested charts in generated report documents. Added cached offline rendering of the same Altair chart specifications to PNG (Word/PDF) and SVG (Markdown). Embedded before/after project status, observed changes, and sprint owner/status workload charts with actual-date captions. Reopened documents to verify image presence and retained status/evidence text. Inspected a rendered progress chart visually. Refreshed local preview artifacts without changing report payload or approval status. All 65 tests pass.
+
+STALE APPROVAL INVESTIGATION
+User reported version 1 approval despite a version 2 existing. Local records showed separate report IDs: 697fef3a... has version 2 pending; 0a0f0008... was approved at version 1. No existing approvals were changed. Improved library labels to include short IDs and displayed the full active ID. Bound review forms and feedback widgets to report/version, added a displayed-content hash guard, and tested an old browser form submitted after a separate revision. The live stale CLI request for report 697fef3a... version 1 was refused. All 67 tests pass.
+
+REPORT SELECTOR USABILITY
+User approved the proposed compact-label/full-detail design. Moved report selection into the main content area, changed labels to date/version/readable status/short ID, removed the extra open button, synchronized selection with the URL, and displayed full IDs in a copyable code field. Added a real Streamlit selection test without new model calls.
+
+FRIENDLY REPORT NUMBERS
+User requested simpler identifiers. Added a persistent RPT-NNN registry in the checkpoint database and backfilled existing reports by first recorded checkpoint. Labels/headings use the friendly number; UUIDs are collapsed under Technical details and remain unchanged for links/approvals. Added tests that labels survive revision/reload and new reports get distinct numbers.

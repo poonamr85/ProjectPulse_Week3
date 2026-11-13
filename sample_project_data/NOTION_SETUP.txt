@@ -1,0 +1,18 @@
+STEP 2 — NOTION IMPORT GUIDE
+
+1. Create a private Notion page: Project Status Agent Demo — Synthetic Data.
+2. Import sprints.csv, tasks.csv, and task_history.csv individually using Import > CSV. Name the resulting databases Sprints, Tasks, and Task History. Place them under the demo page if needed.
+3. Each CSV begins with a unique identifier. Keep that first column as the required Notion title property. Preserve the column names.
+4. Set these properties:
+   Sprints: Start Date and End Date -> Date; Status and Data Type -> Select; identifiers and Goal -> text/title.
+   Tasks: Due Date and Status Since -> Date; Status, Priority, Data Type -> Select; Owner -> text (fictional users); all IDs, dependencies, title, and notes -> text/title.
+   Task History: Snapshot Date -> Date; Status and Data Type -> Select; all IDs and notes -> text/title. Blank Assigned Sprint ID means backlog.
+5. Keep ISO dates as YYYY-MM-DD without time. Do not substitute Notion creation/edit timestamps for historical observation dates.
+6. For this version, retain text identifiers rather than configuring Notion Relation fields. CSV does not automatically resolve cross-database relations. Python will validate and join the identifiers.
+7. Check row counts: Sprints 3, Tasks 20, Task History 120. Avoid re-importing the same CSV into the same database: this can duplicate rows.
+8. Suggested Tasks views: Current Sprint (Current Sprint ID = SPR-03); Blocked (Status = Blocked); Overdue (Due Date before 2026-11-04 AND Status is not Done). Suggested History view: sort Snapshot Date ascending, group by Task ID.
+9. Create an internal Notion connection named Project Status Agent in the same workspace with Read content access. Use each database page menu > Connections / Add connections to grant access. Labels may vary in the UI.
+10. Save the three database links. Keep the private connection token in a local .env when Python setup begins; never put it in chat, CSVs, or GitHub.
+11. After the connector is implemented, resolve data-source IDs, retrieve every page of results, and compare API counts against these fixtures.
+
+These files are ready locally; they have not been uploaded to Notion. Import and access checks must be completed in your workspace.
