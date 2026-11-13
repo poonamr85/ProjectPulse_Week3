@@ -4,6 +4,7 @@ Run from the project root. These scripts are separate from normal app operation.
 
 | Command | Purpose | External effects |
 | --- | --- | --- |
+| `python -m scripts.run_replit_demo` | Seed isolated CSV records and start Streamlit for Replit | Writes demo-only SQLite files; does not publish memories or generate reports |
 | `python -m scripts.generate_acceptance_document` | Rebuild the current acceptance Word/PDF using retained evidence | None; writes only the two current document files |
 | `python -m scripts.verify_live_traces` | Run a real agent question and report, then verify LangSmith spans | Uses provider credits; creates an unapproved report; saves a timestamped verification folder |
 

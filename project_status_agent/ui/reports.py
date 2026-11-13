@@ -1,5 +1,6 @@
 """Local Streamlit report workspace; all decisions use the existing workflow."""
 
+import os
 import sqlite3
 from datetime import datetime, timedelta
 from html import escape
@@ -65,7 +66,9 @@ def main() -> None:
         st.markdown("### ◈ PROJECT PULSE")
         st.caption("Your weekly delivery review")
         st.divider()
-        link_source = st.query_params.get("source", "notion")
+        link_source = st.query_params.get(
+            "source", os.environ.get("PROJECT_DEFAULT_SOURCE", "notion")
+        )
         if link_source not in {"notion", "csv"}:
             link_source = "notion"
         st.caption(f"Project: {project_id}")

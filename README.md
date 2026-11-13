@@ -87,6 +87,10 @@ python -m ruff check project_status_agent tests scripts app.py
 
 Tests use isolated databases and model doubles. Real service checks spend provider credits and are separate; see [acceptance results](docs/ACCEPTANCE_RESULTS.md) and [maintenance scripts](scripts/README.md).
 
+## Temporary Replit demo
+
+For the isolated CSV demonstration with SQLite, see [Replit setup](docs/REPLIT_DEMO.md). The launcher initializes synthetic records without copying local databases.
+
 ## Project documentation
 
 - [Project overview, architecture, tools, datasets and learnings — PDF](docs/Project_Pulse_Project_Documentation.pdf) · [Word](docs/Project_Pulse_Project_Documentation.docx)

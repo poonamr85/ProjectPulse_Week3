@@ -1,0 +1,10 @@
+entrypoint = "app.py"
+run = ["python", "-m", "scripts.run_replit_demo"]
+
+[[ports]]
+localPort = 8501
+externalPort = 80
+
+[deployment]
+build = ["sh", "-c", "python -m pip install -r requirements-tools.lock"]
+run = ["python", "-m", "scripts.run_replit_demo"]
