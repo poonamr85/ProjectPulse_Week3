@@ -15,8 +15,11 @@ This setup keeps SQLite and initializes the November 10 synthetic CSV dataset. I
 | `NEBIUS_BASE_URL` | `https://api.tokenfactory.nebius.com/v1` |
 | `LANGSMITH_API_KEY` | Optional trace access |
 | `LANGSMITH_TRACING` | `true` to record traces |
-| `LANGSMITH_PROJECT` | Use `project-pulse-replit-demo` to distinguish hosted evidence |
+| `LANGSMITH_AGENT_ID` | Copy the identifier of the existing Intelligent Project Status Agent |
+| `LANGSMITH_AGENT_ENVIRONMENT` | `development` for the Replit demo |
 | `MEM0_API_KEY` / `MEMORY_USER_ID` | Optional memory retrieval; existing Notion-tagged memories are not CSV memories |
+
+For your agent-based LangSmith workspace, remove `LANGSMITH_PROJECT`, `LANGCHAIN_PROJECT` and `LANGCHAIN_SESSION` if set. Restart the app after updating Secrets. View new runs under **Intelligent Project Status Agent → Tracing → Development**. The SDK pinned by this project supports agent/environment addressing. If using a project-based workspace instead, use `LANGSMITH_PROJECT` without the agent/environment variables.
 
 Notion credentials are unnecessary for the CSV walkthrough. Do not upload `.env`, runtime databases or private backups. Review published-app secrets separately if publishing.
 
