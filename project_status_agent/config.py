@@ -36,6 +36,7 @@ class Settings:
 def load_env(path: str = ".env") -> None:
     file = Path(path)
     if not file.exists():
+        configure_tracing()
         return
     for line in file.read_text().splitlines():
         line = line.strip()
@@ -45,6 +46,18 @@ def load_env(path: str = ".env") -> None:
         if not separator or not key.replace("_", "").isalnum():
             raise ValueError("Invalid .env entry. Use KEY=value, one per line.")
         os.environ.setdefault(key, value.strip().strip("\"'"))
+    configure_tracing()
+
+
+def configure_tracing() -> None:
+    """Agent addressing takes precedence over legacy project environment values."""
+    agent = os.environ.get("LANGSMITH_AGENT_ID", "").strip()
+    environment = os.environ.get("LANGSMITH_AGENT_ENVIRONMENT", "").strip()
+    if not (agent and environment):
+        return
+    # The SDK rejects mixed destinations. Keep the explicitly selected agent.
+    for key in ("LANGSMITH_PROJECT", "LANGCHAIN_PROJECT", "LANGCHAIN_SESSION"):
+        os.environ.pop(key, None)
 
 
 def required(name: str) -> str:

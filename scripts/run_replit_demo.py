@@ -5,7 +5,7 @@ import sys
 from contextlib import closing
 from pathlib import Path
 
-from project_status_agent.config import PROJECT_ROOT
+from project_status_agent.config import PROJECT_ROOT, load_env
 from project_status_agent.data.store import Store
 from project_status_agent.data.validation import read_csv_bundle
 
@@ -34,6 +34,15 @@ def main() -> None:
     os.chdir(PROJECT_ROOT)
     # Dedicated paths override other settings only in this demo process.
     os.environ.update(prepare_demo())
+    os.environ.update(
+        {
+            "LANGSMITH_TRACING": "true",
+            "LANGSMITH_ENDPOINT": "https://api.smith.langchain.com",
+            "LANGSMITH_AGENT_ID": "intelligent-project-status",
+            "LANGSMITH_AGENT_ENVIRONMENT": "development",
+        }
+    )
+    load_env(str(PROJECT_ROOT / ".env"))
     print("Synthetic CSV demo ready through November 10, 2026.", flush=True)
     print("Temporary SQLite state: data/replit_demo/", flush=True)
     os.execv(

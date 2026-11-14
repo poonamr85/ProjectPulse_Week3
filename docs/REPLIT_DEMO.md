@@ -27,6 +27,8 @@ Notion credentials are unnecessary for the CSV walkthrough. Do not upload `.env`
 
 Press Run, or use `python -m scripts.run_replit_demo`.
 
+The demo launcher now sets tracing to `https://api.smith.langchain.com`, agent `intelligent-project-status`, environment `development`, and enables tracing before Streamlit starts. Supply `LANGSMITH_API_KEY` in Replit Secrets. Startup removes conflicting legacy project/session variables when agent addressing is configured; no additional tracing decorators are needed for LangChain/LangGraph.
+
 - Seeds 20 tasks, 3 sprints and 200 historical observations into `data/replit_demo/project_status.sqlite3` on first startup.
 - Uses `data/replit_demo/agent_checkpoints.sqlite3` for hosted conversations and reports.
 - Defaults the UI to **Sample CSV snapshots**; the normal local launcher still defaults to Notion.

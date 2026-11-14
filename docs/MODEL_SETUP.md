@@ -61,3 +61,8 @@ The older model-recovery artifact was retired during cleanup; current-model evid
 ## Report output-limit handling — November 11, 2026
 
 A failed report trace showed two empty GLM-5.3-Flash responses: each exhausted 4,096 completion tokens entirely on reasoning (`finish_reason=length`). This was not missing project data or a proven mitigation-coverage error. Report generation now binds a 16,384-token completion allowance, including reasoning; interactive Q&A retains its existing configuration. This is a ceiling, not a fixed token charge, and can permit longer or more expensive responses. A truncated report stops with a specific output-limit message instead of repeating the same schema-repair request. Empty responses without a length finish reason get a specific message and at most one retry. Schema, evidence validation and human approval remain required. Regression tests cover both failure cases.
+
+
+## LangSmith agent destination
+
+The configured tracing endpoint is `https://api.smith.langchain.com`, agent ID `intelligent-project-status`, environment `development`. The UI resolves environment settings before importing integrations; when a complete agent address is present, startup removes `LANGSMITH_PROJECT`, `LANGCHAIN_PROJECT` and `LANGCHAIN_SESSION` from the process to avoid mixed-destination errors. Project-only configurations remain supported when no complete agent address is supplied. API keys stay in ignored `.env` or platform Secrets. The Replit launcher sets this agent destination explicitly. Restart the running process after updating code or settings; previous missing traces cannot be recovered retroactively.
